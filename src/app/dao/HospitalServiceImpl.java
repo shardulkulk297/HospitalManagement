@@ -32,6 +32,7 @@ public class HospitalServiceImpl implements IHospitalService {
         if(appointmentId == 0 || appointmentId < 0)
         {
             System.out.println("Appointment ID cannot be 0 or less than 0");
+            return null;
         }
 
         try{
@@ -86,6 +87,7 @@ public class HospitalServiceImpl implements IHospitalService {
         if(patientId == 0 || patientId < 0){
             System.out.println("Patient ID can't be 0");
             throw new PatientNumberNotFoundException("Patient ID can't be 0");
+
 
         }
 
@@ -143,6 +145,7 @@ public class HospitalServiceImpl implements IHospitalService {
         if(doctorId == 0 || doctorId < 0)
         {
             System.out.println("DOCTOR ID MUST BE A NUMBER WHICH IS NOT 0 AND NEGATIVE");
+            return null;
         }
 
 

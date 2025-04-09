@@ -50,6 +50,12 @@ public class MainModule {
                     System.out.println("Enter Appointment ID");
                     int apoId = sc.nextInt();
 
+                    if(apoId == 0 || apoId < 0){
+                        System.out.println("The id can't be 0 or negative");
+                        break;
+
+                    }
+
                     HospitalServiceImpl impl = new HospitalServiceImpl();
                     Appointment apo = impl.getAppointmentById(apoId);
 
@@ -67,6 +73,11 @@ public class MainModule {
                 case 2->{
                     System.out.println("Enter patient Id");
                     int patientId = sc.nextInt();
+
+                    if(patientId == 0 || patientId < 0){
+                        System.out.println("The id can't be 0 or negative");
+                        break;
+                    }
 
 
 
@@ -98,6 +109,11 @@ public class MainModule {
                     System.out.println("Enter DoctorId");
                     int doctorId = sc.nextInt();
 
+                    if(doctorId == 0 || doctorId < 0){
+                        System.out.println("The id can't be 0 or negative");
+                        break;
+                    }
+
                     HospitalServiceImpl impl = new HospitalServiceImpl();
                     List<Appointment> appointments = impl.getAppointmentsForDoctors(doctorId);
                     System.out.println("Doctor's Appointments:");
@@ -120,11 +136,26 @@ public class MainModule {
                 case 4->{
                     System.out.println("Schedule Appointment");
 
-                    LocalDate apDate = LocalDate.of(2025, 05, 05);
+                    System.out.print("Enter Patient ID: ");
+                    int patientId = sc.nextInt();
 
-                    Appointment appointment = new Appointment(
-                            1, 2, ConvertDate(apDate), "Dentist tooth checkup"
-                    );
+                    System.out.print("Enter Doctor ID: ");
+                    int doctorId = sc.nextInt();
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Appointment Date (yyyy-MM-dd): ");
+                    String dateInput = sc.nextLine();
+
+                    LocalDate apDate = LocalDate.parse(dateInput);
+                    Date utilDate = ConvertDate(apDate);
+
+                    System.out.print("Enter Description: ");
+                    String description = sc.nextLine();
+
+                    Appointment appointment = new Appointment(patientId, doctorId, utilDate, description);
+
+
 
                     HospitalServiceImpl impl = new HospitalServiceImpl();
 
