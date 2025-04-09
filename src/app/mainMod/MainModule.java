@@ -172,18 +172,33 @@ public class MainModule {
                 }
 
                 case 5->{
-                    System.out.println("Enter Appointment ID of the appointment you want to update");
+                    System.out.println("Enter Appointment ID of the appointment you want to update:");
                     int apoId = sc.nextInt();
 
-                    HospitalServiceImpl impl = new HospitalServiceImpl();
-                    LocalDate apDate = LocalDate.of(2025, 05, 10); //updating Date
-                    Appointment appointment = new Appointment(apoId, 1, 3, ConvertDate(apDate), "Regular Checkup");
+                    System.out.print("Enter Updated Patient ID: ");
+                    int patientId = sc.nextInt();
 
+                    System.out.print("Enter Updated Doctor ID: ");
+                    int doctorId = sc.nextInt();
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Updated Appointment Date (yyyy-MM-dd): ");
+                    String dateInput = sc.nextLine();
+                    LocalDate apDate = LocalDate.parse(dateInput);
+                    Date utilDate = ConvertDate(apDate);
+
+                    System.out.print("Enter Updated Description: ");
+                    String description = sc.nextLine();
+
+                    Appointment appointment = new Appointment(apoId, patientId, doctorId, utilDate, description);
+
+                    HospitalServiceImpl impl = new HospitalServiceImpl();
                     boolean updateStatus = impl.updateAppointment(appointment);
-                    if(updateStatus){
+
+                    if (updateStatus) {
                         System.out.println("Updated Successfully");
-                    }
-                    else{
+                    } else {
                         System.out.println("SOMETHING WENT WRONG WHILE Updating");
                     }
 
