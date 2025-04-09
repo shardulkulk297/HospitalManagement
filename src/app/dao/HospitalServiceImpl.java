@@ -51,6 +51,10 @@ public class HospitalServiceImpl implements IHospitalService {
                 apo.setDoctorId(rs.getInt("doctorId"));
             }
 
+            else{
+                System.out.println("NO Appointments FOUND");
+            }
+
 
         }
         catch(SQLException e)
@@ -152,8 +156,9 @@ public class HospitalServiceImpl implements IHospitalService {
             stmt.setInt(1, doctorId);
 
             ResultSet rs = stmt.executeQuery();
-
+            boolean flag = false;
             while(rs.next()){
+                flag = true;
                 apo = new Appointment();
                 apo.setAppointmentId(rs.getInt("appointmentId"));
                 apo.setDoctorId(doctorId);
@@ -162,6 +167,10 @@ public class HospitalServiceImpl implements IHospitalService {
                 apo.setAppointmentDate(rs.getDate("appointmentDate"));
 
                 appointments.add(apo);
+            }
+
+            if(!flag){
+                System.out.println("No appointments Today SIR");
             }
 
         }
