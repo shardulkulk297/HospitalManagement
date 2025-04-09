@@ -80,7 +80,18 @@ public class MainModule {
                     }
 
                     System.out.println("Your Appointments");
-                    System.out.println(appointments);
+
+                    if(appointments.isEmpty())
+                    {
+                        System.out.println("NO APPOINMENTS SCHEDULED");
+                    }
+                    else{
+                        for(Appointment a: appointments){
+                            System.out.println(a);
+                        }
+
+                    }
+
                 }
 
                 case 3->{
@@ -95,7 +106,12 @@ public class MainModule {
                         System.out.println("NO APPOINTMENTS");
                     }
                     else{
-                        System.out.println(appointments);
+
+                        for(Appointment a: appointments){
+                            System.out.println(a);
+                        }
+
+
                     }
 
 
@@ -130,7 +146,7 @@ public class MainModule {
 
                     HospitalServiceImpl impl = new HospitalServiceImpl();
                     LocalDate apDate = LocalDate.of(2025, 05, 10); //updating Date
-                    Appointment appointment = new Appointment(apoId, 1, 3, ConvertDate(apDate), "Dentist tooth checkup");
+                    Appointment appointment = new Appointment(apoId, 1, 3, ConvertDate(apDate), "Regular Checkup");
 
                     boolean updateStatus = impl.updateAppointment(appointment);
                     if(updateStatus){

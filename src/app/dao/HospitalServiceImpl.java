@@ -200,6 +200,7 @@ public class HospitalServiceImpl implements IHospitalService {
 
         if(appointment == null){
             System.out.println("NO APPOINTMENTS!");
+            return false;
         }
 
         boolean scheduled = false;
@@ -250,6 +251,7 @@ public class HospitalServiceImpl implements IHospitalService {
 
         if(appointment == null){
             System.out.println("NO APPOINTMENTS!");
+            return false;
         }
         boolean update = false;
 
@@ -304,12 +306,13 @@ public class HospitalServiceImpl implements IHospitalService {
 
         if(appointmentId ==0 || appointmentId < 0){
             System.out.println("APPOINTMENT ID CANNOT BE 0 OR NEGATIVE");
+            return false;
         }
 
         boolean cancel = false;
 
         try{
-            String sql = "Delete * from appointment WHERE appointmentId = ?";
+            String sql = "Delete from appointment WHERE appointmentId = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, appointmentId);
 
