@@ -13,7 +13,7 @@ public class HospitalServiceImpl implements IHospitalService {
     private Connection con;
     private Appointment apo = null;
 
-    HospitalServiceImpl(){
+    public HospitalServiceImpl(){
         try{
             con = DBConnection.getConnection();
         }
@@ -91,8 +91,9 @@ public class HospitalServiceImpl implements IHospitalService {
             stmt.setInt(1, patientId);
 
             ResultSet rs = stmt.executeQuery();
-
+            boolean flag = false;
             while(rs.next()){
+                flag = true;
                 apo = new Appointment();
 
                 apo.setAppointmentId(rs.getInt("appointmentId"));
@@ -103,6 +104,13 @@ public class HospitalServiceImpl implements IHospitalService {
 
                 appointments.add(apo);
             }
+
+            if(!flag){
+                throw new PatientNumberNotFoundException("PATIENT NOT FOUND");
+            }
+
+
+
 
         }
 
@@ -240,6 +248,7 @@ public class HospitalServiceImpl implements IHospitalService {
 
             String sql = "Update appointment SET patientId = ?, doctorId = ?, appointmentDate = ?, description = ? WHERE appointmentId = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
+
             stmt.setInt(1, appointment.getPatientId());
             stmt.setInt(2, appointment.getDoctorId());
             stmt.setDate(3, new Date(appointment.getAppointmentDate().getTime()));

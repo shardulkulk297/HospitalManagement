@@ -21,6 +21,13 @@ public class Appointment {
         this.description = description;
     }
 
+    public Appointment(int patientId, int doctorId, Date appointmentDate, String description) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.appointmentDate = appointmentDate;
+        this.description = description;
+    }
+
     //setter methods
 
 
