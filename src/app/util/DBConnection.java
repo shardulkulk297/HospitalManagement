@@ -8,11 +8,8 @@ public class DBConnection {
 
     private static Connection connection;
     public static Connection getConnection() throws SQLException {
-
-        if (connection == null || connection.isClosed()) {
             connection = DriverManager.getConnection(PropertyUtil.getPropertyString());
-        }
-        return connection;
 
+            return connection;
     }
 }
