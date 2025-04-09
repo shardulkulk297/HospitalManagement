@@ -14,6 +14,8 @@ public class PropertyUtil {
             FileInputStream fs = new FileInputStream("db.properties");
             prop.load(fs);
 
+            fs.close();
+
         }
         catch(IOException e)
         {
@@ -21,10 +23,10 @@ public class PropertyUtil {
         }
 
         String hostname = prop.getProperty("hostname");
-        String dbname     = prop.getProperty("dbname");
-        String username   = prop.getProperty("username");
-        String password   = prop.getProperty("password");
-        String port       = prop.getProperty("port");
+        String dbname = prop.getProperty("dbname");
+        String username = prop.getProperty("username");
+        String password = prop.getProperty("password");
+        String port = prop.getProperty("port");
 
         String connectionString = "jdbc:mysql://" + hostname + ":" + port + "/" + dbname +
                 "?user=" + username + "&password=" + password;
