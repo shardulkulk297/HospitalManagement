@@ -1,7 +1,7 @@
 package app.exception;
 
 public class PatientNumberNotFoundException extends Exception {
-    PatientNumberNotFoundException(String message){
+    public PatientNumberNotFoundException(String message){
         super(message);
     }
 }
